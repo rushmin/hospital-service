@@ -6,7 +6,10 @@ public class Application {
 
     public static void main(String[] args) {
         new MicroservicesRunner()
-                .deploy(new PatientService()).deploy(new MedicineService())
+                .addGlobalRequestInterceptor(new UsernamePasswordSecurityInterceptor())
+                .deploy(new PatientService())
+                .deploy(new MedicineService())
+                .deploy(new DoctorService())
                 .start();
     }
 

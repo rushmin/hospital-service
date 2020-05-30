@@ -25,11 +25,11 @@ public class MedicineService {
 
     public MedicineService(){
 
-        medicines.add(new Medicine("A10", "A-Ten"));
-        medicines.add(new Medicine("B10", "Bee-Ten"));
-        medicines.add(new Medicine("C10", "Sea-Ten"));
-        medicines.add(new Medicine("D10", "Dee-Ten"));
-        medicines.add(new Medicine("E10", "Eee-Ten"));
+        medicines.add(new Medicine("A1", "Augmentin"));
+        medicines.add(new Medicine("N1", "Nurofen"));
+        medicines.add(new Medicine("P1", "Piriton"));
+        medicines.add(new Medicine("D1", "Digene"));
+        medicines.add(new Medicine("P2", "Pantodac"));
 
     }
 

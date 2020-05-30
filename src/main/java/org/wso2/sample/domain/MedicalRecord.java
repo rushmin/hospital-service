@@ -1,12 +1,12 @@
 package org.wso2.sample.domain;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class MedicalRecord {
 
     private String id;
     private String code;
+    private String doctorId;
     private int amount;
     private String date;
 
@@ -27,6 +27,16 @@ public class MedicalRecord {
     public void setCode(String code) {
 
         this.code = code;
+    }
+
+    public String getDoctorId() {
+
+        return doctorId;
+    }
+
+    public void setDoctorId(String doctorId) {
+
+        this.doctorId = doctorId;
     }
 
     public int getAmount() {
