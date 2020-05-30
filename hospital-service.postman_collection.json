@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "19a29d9a-3d92-4e25-a6bb-2504fbbc0db3",
+		"name": "hospital-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add-patient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a27b4451-f2cf-4e00-87c9-edea44092000",
+						"exec": [
+							"pm.globals.set(\"patient_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"rushmin\", \"dateOfBirth\":\"08/31/1984\", \"email\":\"rushmin@wso2.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-patient",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "06ba38b6-c0e9-44eb-8f17-932e9bf2855c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "56873777-41b8-4b75-8d2d-f2d62d57e9f6",
+						"exec": [
+							"pm.globals.set(\"patient_email\", pm.response.json().email);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/patient/{{patient_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"patient",
+						"{{patient_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search-patient",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "84e04d03-81c6-449a-acf1-7b922b7afc1f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/patient/search?email={{patient_email}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"patient",
+						"search"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{patient_email}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-medicine-list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b0fadfa1-eb44-4d91-9816-869345e38903",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "af727da8-52a2-47a1-acf5-db5445949cf2",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/medicine",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"medicine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-doctor-list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2d1506c2-2a0d-4fc8-8f6e-0c581bf875db",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "db30fdd8-e46e-4e42-a755-723cb84ad7f5",
+						"exec": [
+							"var response = xml2Json(responseBody);",
+							"pm.globals.set(\"doctor_id\", response.doctors.doctor[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/doctorService/getAllDoctors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"doctorService",
+						"getAllDoctors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-medical-record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f54fdad2-d43e-49a8-8389-261b5a27369b",
+						"exec": [
+							"pm.globals.set(\"medical_record_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"medicineCode\":\"A1\", \"amount\":10, \"date\":\"05/29/2020\", \"doctorId\":{{doctor_id}}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/patient/{{patient_id}}/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"patient",
+						"{{patient_id}}",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-medical-record",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/patient/{{patient_id}}/history/{{medical_record_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"patient",
+						"{{patient_id}}",
+						"history",
+						"{{medical_record_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-patient",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "P@ssword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application_user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/patient/{{patient_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"patient",
+						"{{patient_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
