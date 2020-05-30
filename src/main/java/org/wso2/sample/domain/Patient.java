@@ -15,6 +15,7 @@ public class Patient {
     public static final String DATE_FORMAT = "MM/dd/yyyy";
     private String id;
     private String name;
+    private String email;
     private String dateOfBirth;
     private Map<String, MedicalRecord> medicalRecords;
 
@@ -42,6 +43,16 @@ public class Patient {
     public void setName(String name) {
 
         this.name = name;
+    }
+
+    public String getEmail() {
+
+        return email;
+    }
+
+    public void setEmail(String email) {
+
+        this.email = email;
     }
 
     public String getDateOfBirth() {

@@ -1,6 +1,8 @@
 package org.wso2.sample;
 
 import com.google.gson.Gson;
+import io.netty.handler.codec.http.HttpRequest;
+import io.netty.handler.codec.http.QueryStringDecoder;
 import org.wso2.sample.domain.Patient;
 import org.wso2.sample.domain.MedicalRecord;
 
@@ -13,6 +15,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 @Path("/patient")
@@ -28,11 +32,31 @@ public class PatientService {
         Patient patient = patients.get(id);
 
         if(patient != null){
-            return Response.status(Response.Status.OK).entity(new Gson().toJson(patients.get(id))).build();
+            return Response.status(Response.Status.OK).entity(new Gson().toJson(patient)).build();
         }else{
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
+    }
+
+    @GET
+    @Path("/search")
+    @Produces("application/json")
+    public Response searchPatient(@QueryParam("email") String email) {
+
+        Patient patient = null;
+
+        for(Map.Entry<String, Patient> entry : patients.entrySet()){
+            if(entry.getValue().getEmail().equals(email)){
+                patient = entry.getValue();
+            }
+        }
+
+        if(patient != null){
+            return Response.status(Response.Status.OK).entity(new Gson().toJson(patient)).build();
+        }else{
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
     @POST

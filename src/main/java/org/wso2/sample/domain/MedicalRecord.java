@@ -5,7 +5,7 @@ import java.util.UUID;
 public class MedicalRecord {
 
     private String id;
-    private String code;
+    private String medicineCode;
     private String doctorId;
     private int amount;
     private String date;
@@ -19,14 +19,14 @@ public class MedicalRecord {
         return id;
     }
 
-    public String getCode() {
+    public String getMedicineCode() {
 
-        return code;
+        return medicineCode;
     }
 
-    public void setCode(String code) {
+    public void setMedicineCode(String medicineCode) {
 
-        this.code = code;
+        this.medicineCode = medicineCode;
     }
 
     public String getDoctorId() {
